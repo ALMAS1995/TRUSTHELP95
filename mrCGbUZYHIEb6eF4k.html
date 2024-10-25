@@ -1,0 +1,420 @@
+<html><head><base href="https://trusthelp.com/rencontre">
+<meta charset="UTF-8">
+<title>TRUSTHELP - Rencontres</title>
+<style>
+    /* Styles de base */
+    :root {
+        --primary-color: #00ffff;
+        --secondary-color: #ff69b4;
+        --bg-dark: #0a0a2e;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Orbitron', sans-serif;
+        background: linear-gradient(45deg, var(--bg-dark), #1a1a4a);
+        color: #fff;
+        min-height: 100vh;
+    }
+
+    /* Navigation */
+    .nav-header {
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(10px);
+        padding: 1rem;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        border-bottom: 1px solid var(--primary-color);
+    }
+
+    .nav-links {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+    }
+
+    .nav-link {
+        color: #fff;
+        text-decoration: none;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        transition: all 0.3s ease;
+    }
+
+    .nav-link:hover {
+        background: rgba(0, 255, 255, 0.1);
+        box-shadow: 0 0 10px var(--primary-color);
+    }
+
+    /* Conteneur principal */
+    .container {
+        margin-top: 80px;
+        padding: 2rem;
+    }
+
+    /* Filtres */
+    .filters {
+        background: rgba(0, 0, 0, 0.5);
+        padding: 1rem;
+        border-radius: 10px;
+        margin-bottom: 2rem;
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        border: 1px solid var(--primary-color);
+    }
+
+    .filter-input {
+        flex: 1;
+        min-width: 200px;
+        padding: 0.5rem;
+        border: 1px solid var(--primary-color);
+        border-radius: 5px;
+        background: rgba(0, 0, 0, 0.3);
+        color: #fff;
+    }
+
+    /* Grille des profils */
+    .profiles-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 2rem;
+    }
+
+    /* Carte de profil */
+    .profile-card {
+        background: rgba(0, 0, 0, 0.5);
+        border: 1px solid var(--primary-color);
+        border-radius: 15px;
+        padding: 1.5rem;
+        transition: all 0.3s ease;
+    }
+
+    .profile-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 0 20px var(--primary-color);
+    }
+
+    .profile-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .profile-image {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        border: 2px solid var(--primary-color);
+        object-fit: cover;
+    }
+
+    .profile-info h3 {
+        margin: 0;
+        color: var(--primary-color);
+    }
+
+    /* Section des avis */
+    .reviews-section {
+        margin-top: 1rem;
+        border-top: 1px solid rgba(0, 255, 255, 0.2);
+        padding-top: 1rem;
+    }
+
+    .star-rating {
+        font-size: 1.5rem;
+        color: #ffd700;
+    }
+
+    .star {
+        cursor: pointer;
+    }
+
+    .reviews-container {
+        margin-top: 1rem;
+    }
+
+    .review {
+        background: rgba(0, 0, 0, 0.3);
+        padding: 1rem;
+        border-radius: 8px;
+        margin-bottom: 0.5rem;
+    }
+
+    .review-date {
+        font-size: 0.8rem;
+        color: rgba(255, 255, 255, 0.6);
+    }
+
+    /* Chat */
+    .chat-section {
+        margin-top: 1rem;
+    }
+
+    .chat-button {
+        background: transparent;
+        border: 1px solid var(--primary-color);
+        color: var(--primary-color);
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .chat-button:hover {
+        background: var(--primary-color);
+        color: var(--bg-dark);
+    }
+
+    .review-form {
+        margin-top: 1rem;
+    }
+
+    .review-input {
+        width: 100%;
+        padding: 0.5rem;
+        border: 1px solid var(--primary-color);
+        border-radius: 5px;
+        background: rgba(0, 0, 0, 0.3);
+        color: #fff;
+        margin-bottom: 0.5rem;
+    }
+
+    .publish-button {
+        background: transparent;
+        border: 1px solid var(--primary-color);
+        color: var(--primary-color);
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .publish-button:hover {
+        background: var(--primary-color);
+        color: var(--bg-dark);
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+</style>
+</head>
+<body>
+    <header class="nav-header">
+        <nav class="nav-links">
+            <a href="/accueil" class="nav-link">Accueil</a>
+            <a href="/inscription-relation" class="nav-link">Inscription & Mise en relation</a>
+            <a href="/rencontre" class="nav-link">Rencontre</a>
+            <a href="/forum" class="nav-link">Forum</a>
+            <a href="/contact" class="nav-link">Contact</a>
+            <a href="/aide" class="nav-link">Aide</a>
+            <a href="/compte" class="nav-link">Compte</a>
+            <a href="/faire-un-don" class="nav-link">Faire un Don</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="filters">
+            <input type="text" class="filter-input" placeholder="Prénom" id="filter-firstname">
+            <input type="text" class="filter-input" placeholder="Nom" id="filter-lastname">
+            <input type="text" class="filter-input" placeholder="Département" id="filter-department">
+            <input type="text" class="filter-input" placeholder="Ville" id="filter-city">
+            <select class="filter-input" id="filter-type">
+                <option value="">Type de profil</option>
+                <option value="aidant">Aidant</option>
+                <option value="besoin">Besoin d'aide</option>
+            </select>
+        </div>
+
+        <div class="profiles-grid" id="profiles-container">
+            <!-- Les profils seront générés dynamiquement ici -->
+        </div>
+    </div>
+
+    <script>
+        // Fonction pour charger les profils depuis le localStorage
+        function loadProfiles() {
+            const profiles = JSON.parse(localStorage.getItem('registeredProfiles') || '[]');
+            const container = document.getElementById('profiles-container');
+            container.innerHTML = ''; // Nettoie le conteneur
+
+            profiles.forEach(profile => {
+                const profileCard = createProfileCard(profile);
+                container.appendChild(profileCard);
+            });
+            
+            // Apply any existing filters after loading profiles
+            applyFilters();
+        }
+
+        // Création d'une carte de profil
+        function createProfileCard(profile) {
+            const card = document.createElement('div');
+            card.className = 'profile-card';
+            
+            card.innerHTML = `
+                <div class="profile-header">
+                    <img src="${profile.photo}" alt="Photo de profil" class="profile-image">
+                    <div class="profile-info">
+                        <h3>${profile.prenom} ${profile.nom}</h3>
+                        <p>${profile.ville}, ${profile.departement}</p>
+                        <p>${profile.userType}</p>
+                    </div>
+                </div>
+                <p>${profile.presentation}</p>
+                
+                <div class="reviews-section">
+                    <div class="star-rating" data-profile-id="${profile.email}">
+                        <span class="star" data-rating="1">★</span>
+                        <span class="star" data-rating="2">★</span>
+                        <span class="star" data-rating="3">★</span>
+                        <span class="star" data-rating="4">★</span>
+                        <span class="star" data-rating="5">★</span>
+                    </div>
+                    
+                    <form class="review-form" onsubmit="submitReview(event, '${profile.email}')">
+                        <textarea class="review-input" placeholder="Écrivez votre avis..."></textarea>
+                        <button type="submit" class="publish-button">Publier</button>
+                    </form>
+
+                    <div class="reviews-container" id="reviews-${profile.email}">
+                        <!-- Les avis seront ajoutés ici -->
+                    </div>
+                </div>
+
+                <div class="chat-section">
+                    <button class="chat-button" onclick="openChat('${profile.email}')">
+                        Envoyer un message
+                    </button>
+                </div>
+            `;
+
+            // Chargement des avis existants
+            loadReviews(profile.email, card.querySelector('.reviews-container'));
+
+            // Gestionnaire d'événements pour les étoiles
+            const stars = card.querySelectorAll('.star');
+            stars.forEach(star => {
+                star.addEventListener('click', () => {
+                    const rating = star.dataset.rating;
+                    setRating(profile.email, rating);
+                    updateStarDisplay(card.querySelector('.star-rating'), rating);
+                });
+            });
+
+            return card;
+        }
+
+        // Gestion des étoiles
+        function setRating(profileId, rating) {
+            const reviews = JSON.parse(localStorage.getItem(`reviews-${profileId}`) || '[]');
+            const currentUserRating = {
+                rating: parseInt(rating),
+                date: new Date().toISOString()
+            };
+            reviews.push(currentUserRating);
+            localStorage.setItem(`reviews-${profileId}`, JSON.stringify(reviews));
+        }
+
+        function updateStarDisplay(starContainer, rating) {
+            const stars = starContainer.querySelectorAll('.star');
+            stars.forEach((star, index) => {
+                star.style.color = index < rating ? '#ffd700' : '#gray';
+            });
+        }
+
+        // Soumission des avis
+        function submitReview(event, profileId) {
+            event.preventDefault();
+            const form = event.target;
+            const reviewText = form.querySelector('.review-input').value;
+            
+            if (!reviewText.trim()) return;
+
+            const review = {
+                text: reviewText,
+                date: new Date().toISOString(),
+                rating: getCurrentRating(profileId)
+            };
+
+            saveReview(profileId, review);
+            addReviewToDisplay(review, document.getElementById(`reviews-${profileId}`));
+            form.reset();
+        }
+
+        function getCurrentRating(profileId) {
+            const reviews = JSON.parse(localStorage.getItem(`reviews-${profileId}`) || '[]');
+            return reviews.length > 0 ? reviews[reviews.length - 1].rating : 0;
+        }
+
+        function saveReview(profileId, review) {
+            const reviews = JSON.parse(localStorage.getItem(`reviews-${profileId}`) || '[]');
+            reviews.push(review);
+            localStorage.setItem(`reviews-${profileId}`, JSON.stringify(reviews));
+        }
+
+        function loadReviews(profileId, container) {
+            const reviews = JSON.parse(localStorage.getItem(`reviews-${profileId}`) || '[]');
+            reviews.forEach(review => addReviewToDisplay(review, container));
+        }
+
+        function addReviewToDisplay(review, container) {
+            const reviewElement = document.createElement('div');
+            reviewElement.className = 'review';
+            reviewElement.innerHTML = `
+                <p>${review.text}</p>
+                <div class="review-date">
+                    ${new Date(review.date).toLocaleString()}
+                </div>
+                <div class="review-rating">
+                    ${'★'.repeat(review.rating)}${'☆'.repeat(5 - review.rating)}
+                </div>
+            `;
+            container.appendChild(reviewElement);
+        }
+
+        // Système de chat
+        function openChat(profileId) {
+            // Implémentation du chat (peut être développée ultérieurement)
+            alert(`Chat ouvert avec ${profileId}`);
+        }
+
+        // Filtrage des profils
+        function applyFilters() {
+            const firstname = document.getElementById('filter-firstname').value.toLowerCase();
+            const lastname = document.getElementById('filter-lastname').value.toLowerCase();
+            const department = document.getElementById('filter-department').value.toLowerCase();
+            const city = document.getElementById('filter-city').value.toLowerCase();
+            const type = document.getElementById('filter-type').value.toLowerCase();
+
+            const profiles = document.querySelectorAll('.profile-card');
+            profiles.forEach(profile => {
+                const fullName = profile.querySelector('h3').textContent.toLowerCase();
+                const [profileFirstName, profileLastName] = fullName.split(' ');
+                const location = profile.querySelector('.profile-info p').textContent.toLowerCase();
+                const profileType = profile.querySelector('.profile-info p:last-child').textContent.toLowerCase();
+
+                const matchesFirstName = !firstname || profileFirstName.includes(firstname);
+                const matchesLastName = !lastname || profileLastName.includes(lastname);
+                const matchesDepartment = !department || location.includes(department);
+                const matchesCity = !city || location.includes(city);
+                const matchesType = !type || profileType.includes(type);
+
+                profile.style.display = 
+                    matchesFirstName && matchesLastName && matchesDepartment && matchesCity && matchesType ? 'block' : 'none';
+            });
+        }
+
+        // Ajout des écouteurs d'événements pour le filtrage
+        document.querySelectorAll('.filter-input').forEach(input => {
+            input.addEventListener('input', applyFilters);
+        });
+
+        // Chargement initial des profils
+        document.addEventListener('DOMContentLoaded', loadProfiles);
+    </script>
+</body>
+</html>
